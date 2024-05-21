@@ -142,7 +142,7 @@ function replaceValuesWithTranslatedValues(obj, valueMap) {
     return result;
 }
 function run() {
-    var _a;
+    var _a, _b;
     return __awaiter(this, void 0, void 0, function* () {
         dotenv_1.default.config();
         core.info(`${ACTION_NAME} Starting up...`);
@@ -161,7 +161,8 @@ function run() {
             core.setFailed(`${ACTION_NAME} LOCALES_DIR is required`);
             return;
         }
-        const localesdir = path.join(__dirname, LOCALES_DIR);
+        const DIR = (_a = process.env.GITHUB_WORKSPACE) !== null && _a !== void 0 ? _a : __dirname;
+        const localesdir = path.join(DIR, LOCALES_DIR);
         core.info(`${ACTION_NAME} Translation files will be placed in: ${localesdir}`);
         const WEGLOT_PROJECT_ID = WEGLOT_API_KEY.replace("wg_", "");
         //Let's check if the weglot API is up and available
@@ -184,7 +185,7 @@ function run() {
         const weglotProjectSettings = weglotProjectSettingsRequest.data;
         const weglotOriginalLanguage = weglotProjectSettings.language_from;
         const supportedWeglotLanguages = [];
-        ((_a = weglotProjectSettings.languages) !== null && _a !== void 0 ? _a : []).map((lang) => {
+        ((_b = weglotProjectSettings.languages) !== null && _b !== void 0 ? _b : []).map((lang) => {
             if (lang.enabled) {
                 supportedWeglotLanguages.push(lang.language_to);
             }
@@ -192,7 +193,7 @@ function run() {
         core.info(`${ACTION_NAME} Original Language: ${weglotOriginalLanguage}, Translating to ${supportedWeglotLanguages.length} languages (${supportedWeglotLanguages})!`);
         //read the orignal language json file
         core.info(`${ACTION_NAME} Reading original language json file...`);
-        const originalFileContent = fs.readFileSync(path.join(__dirname, "../", "locales", `${weglotOriginalLanguage}.json`), "utf8");
+        const originalFileContent = fs.readFileSync(path.join(localesdir, `${weglotOriginalLanguage}.json`), "utf8");
         const originalI18NFile = JSON.parse(originalFileContent);
         // Collect all values
         const values = [];
@@ -214,7 +215,7 @@ function run() {
             // Replace values with translated values
             const resultData = replaceValuesWithTranslatedValues(originalI18NFile, valueMap);
             const jsonContent = JSON.stringify(resultData, null, 2);
-            fs.writeFileSync(path.join(__dirname, "../", "locales", `${lang}.json`), jsonContent, "utf8");
+            fs.writeFileSync(path.join(localesdir, `${lang}.json`), jsonContent, "utf8");
         }
     });
 }
