@@ -155,7 +155,9 @@ async function run() {
     return;
   }
 
-  const localesdir = path.join(__dirname, LOCALES_DIR);
+  const DIR = process.env.GITHUB_WORKSPACE ?? __dirname;
+
+  const localesdir = path.join(DIR, LOCALES_DIR);
   core.info(
     `${ACTION_NAME} Translation files will be placed in: ${localesdir}`
   );
@@ -204,7 +206,7 @@ async function run() {
   //read the orignal language json file
   core.info(`${ACTION_NAME} Reading original language json file...`);
   const originalFileContent = fs.readFileSync(
-    path.join(__dirname, "../", "locales", `${weglotOriginalLanguage}.json`),
+    path.join(localesdir, `${weglotOriginalLanguage}.json`),
     "utf8"
   );
   const originalI18NFile = JSON.parse(originalFileContent);
@@ -246,7 +248,7 @@ async function run() {
 
     const jsonContent = JSON.stringify(resultData, null, 2);
     fs.writeFileSync(
-      path.join(__dirname, "../", "locales", `${lang}.json`),
+      path.join(localesdir, `${lang}.json`),
       jsonContent,
       "utf8"
     );
