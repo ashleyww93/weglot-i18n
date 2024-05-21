@@ -1,0 +1,30 @@
+{
+  "name": "weglot-i18n",
+  "version": "1.0.0",
+  "description": "A github action to generate i18n language files using weglot as the translation tool",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc && ncc build lib/index.js",
+    "buildAndRun": "npm run build && npm run start",
+    "format": "prettier --write **/*.ts",
+    "debug": "ts-node src/index.ts --trace-warnings"
+  },
+  "author": "Ashley Williams",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@actions/core": "^1.5.0",
+    "@actions/github": "^5.0.0",
+    "@types/axios": "^0.14.0",
+    "axios": "^1.7.1",
+    "cross-fetch": "^3.1.4",
+    "dotenv": "^10.0.0",
+    "form-data": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.9.6",
+    "@vercel/ncc": "^0.38.1",
+    "prettier": "^2.4.1",
+    "typescript": "^4.4.3"
+  }
+}

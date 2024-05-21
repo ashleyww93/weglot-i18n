@@ -1,0 +1,15 @@
+name: 'Welgot i18n'
+description: 'A github action to generate i18n language files using weglot as the translation tool'
+inputs:
+  WEGLOT_API_KEY:
+    description: 'A valid Weglot API key'
+    required: true
+  WEGLOT_REQUEST_URL:
+    description: 'The URL the content is being translated from (for reporting purposes)'
+    required: true
+  LOCALES_DIR:
+    description: 'The directory where the language files are stored'
+    required: true
+runs:
+  using: 'node18'
+  main: 'dist/index.js'
