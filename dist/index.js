@@ -50,6 +50,7 @@ const path = __importStar(__nccwpck_require__(1017));
 const ACTION_NAME = "[Weglot-i18n File Generator]";
 const WEGLOT_BASE_URL = "https://api.weglot.com";
 const USER_AGENT = "PostmanRuntime/7.37.3";
+dotenv_1.default.config();
 function translateArray(apiKey, requestUrl, from, to, content) {
     return __awaiter(this, void 0, void 0, function* () {
         const words = [];

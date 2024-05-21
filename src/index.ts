@@ -9,6 +9,8 @@ const ACTION_NAME = "[Weglot-i18n File Generator]";
 const WEGLOT_BASE_URL = "https://api.weglot.com";
 const USER_AGENT = "PostmanRuntime/7.37.3";
 
+dotenv.config();
+
 async function translateArray(
   apiKey: string,
   requestUrl: string,
