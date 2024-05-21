@@ -161,8 +161,11 @@ function run() {
             core.setFailed(`${ACTION_NAME} LOCALES_DIR is required`);
             return;
         }
-        const DIR = (_a = process.env.GITHUB_WORKSPACE) !== null && _a !== void 0 ? _a : __dirname;
-        const localesdir = path.join(DIR, LOCALES_DIR);
+        let WORKING_DIR = process.env.WORKING_DIR;
+        if (!WORKING_DIR) {
+            WORKING_DIR = (_a = process.env.GITHUB_WORKSPACE) !== null && _a !== void 0 ? _a : __dirname;
+        }
+        const localesdir = path.join(WORKING_DIR, LOCALES_DIR);
         core.info(`${ACTION_NAME} Translation files will be placed in: ${localesdir}`);
         const WEGLOT_PROJECT_ID = WEGLOT_API_KEY.replace("wg_", "");
         //Let's check if the weglot API is up and available

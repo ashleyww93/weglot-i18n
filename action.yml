@@ -10,6 +10,9 @@ inputs:
   LOCALES_DIR:
     description: 'The directory where the language files are stored'
     required: true
+  WORKING_DIR:
+    description: 'The base working directory'
+    required: false
 runs:
   using: 'node20'
   main: 'dist/index.js'

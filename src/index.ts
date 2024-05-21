@@ -155,9 +155,13 @@ async function run() {
     return;
   }
 
-  const DIR = process.env.GITHUB_WORKSPACE ?? __dirname;
+  let WORKING_DIR = process.env.WORKING_DIR;
 
-  const localesdir = path.join(DIR, LOCALES_DIR);
+  if (!WORKING_DIR) {
+    WORKING_DIR = process.env.GITHUB_WORKSPACE ?? __dirname;
+  }
+
+  const localesdir = path.join(WORKING_DIR, LOCALES_DIR);
   core.info(
     `${ACTION_NAME} Translation files will be placed in: ${localesdir}`
   );
