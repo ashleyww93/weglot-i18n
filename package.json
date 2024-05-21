@@ -1,6 +1,6 @@
 {
   "name": "weglot-i18n",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A github action to generate i18n language files using weglot as the translation tool",
   "main": "index.js",
   "scripts": {

@@ -11,5 +11,5 @@ inputs:
     description: 'The directory where the language files are stored'
     required: true
 runs:
-  using: 'node18'
+  using: 'node20'
   main: 'dist/index.js'
