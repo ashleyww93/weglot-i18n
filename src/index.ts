@@ -169,19 +169,19 @@ async function run() {
   const WEGLOT_PROJECT_ID = WEGLOT_API_KEY.replace("wg_", "");
 
   //Let's check if the weglot API is up and available
-  core.info(`${ACTION_NAME} Checking Weglot API status...`);
-  const weglotApiStatus = await axios.get(`${WEGLOT_BASE_URL}/public/status`, {
-    headers: {
-      "User-Agent": USER_AGENT,
-    },
-  });
+  // core.info(`${ACTION_NAME} Checking Weglot API status...`);
+  // const weglotApiStatus = await axios.get(`${WEGLOT_BASE_URL}/public/status`, {
+  //   headers: {
+  //     "User-Agent": USER_AGENT,
+  //   },
+  // });
 
-  if (weglotApiStatus.status !== 200) {
-    core.setFailed(
-      `${ACTION_NAME} We encountered an error while trying to connect to the Weglot API. Please try again later.`
-    );
-    return;
-  }
+  // if (weglotApiStatus.status !== 200) {
+  //   core.setFailed(
+  //     `${ACTION_NAME} We encountered an error while trying to connect to the Weglot API. Please try again later.`
+  //   );
+  //   return;
+  // }
 
   core.info(`${ACTION_NAME} Getting Weglot project settings...`);
   const weglotProjectSettingsRequest = await axios.get(
